@@ -13,6 +13,7 @@ yubion-fido2-server-sdk-java は、YubiOn FIDO2Server Service（以下、YubiOn 
 ```
 gradlew jar -x test
 ```
+また、jar内にはSDKが使用する外部ライブラリは含まれないため、それらも別途参照する必要があります。必要な外部ライブラリについてはbuild.gradleをご参照ください。  
 プロジェクトの都合などでmavenなどのパッケージ管理への登録が必要な方がおられましたら、お手数ですがお問い合わせください。  
   
 FIDO2認証のみでなく、登録されているユーザーやクレデンシャルの管理などのAPIも準備されています。詳しくは[APIリファレンス](api-reference.ja.md)をご参照ください。

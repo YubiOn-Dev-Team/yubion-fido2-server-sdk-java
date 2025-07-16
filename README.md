@@ -13,6 +13,7 @@ Currently, registration with package management systems such as Maven has not be
 ```
 gradlew jar -x test
 ```
+Also, the jar does not contain external libraries used by the SDK, so you will need to reference those separately. Please refer to build.gradle for the necessary external libraries.  
 If you need to register with a package management system such as Maven for project reasons, please contact us.  
   
 In addition to FIDO2 authentication, APIs for managing registered users and credentials are also available. For details, please refer to the [API Reference](api-reference.md).
