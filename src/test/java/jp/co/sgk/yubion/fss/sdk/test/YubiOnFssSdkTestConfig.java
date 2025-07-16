@@ -81,7 +81,7 @@ public class YubiOnFssSdkTestConfig {
 	}
 	static FssSdkConfig createNonceConfig(boolean correctKey) {
 		String secretKey = correctKey ? NONCE_SECRET_KEY_OK : NONCE_SECRET_KEY_NG;
-		FssSdkConfig config = new FssSdkConfig(RP_ID, NONCE_AUTH_ID, FssApiAuthType.NonceSignAuth, secretKey);
+		FssSdkConfig config = new FssSdkConfig(RP_ID, NONCE_AUTH_ID, FssApiAuthType.NONCE_SIGN_AUTH, secretKey);
 		if(ENDPOINT != null){
 			config.setEndpoint(ENDPOINT);
 		}
@@ -90,7 +90,7 @@ public class YubiOnFssSdkTestConfig {
 
 	static FssSdkConfig createDatetimeConfig(boolean correctKey) {
 		String secretKey = correctKey ? DATETIME_SECRET_KEY_OK : DATETIME_SECRET_KEY_NG;
-		FssSdkConfig config = new FssSdkConfig(RP_ID, DATETIME_AUTH_ID, FssApiAuthType.DatetimeSignAuth, secretKey);
+		FssSdkConfig config = new FssSdkConfig(RP_ID, DATETIME_AUTH_ID, FssApiAuthType.DATETIME_SIGN_AUTH, secretKey);
 		if(ENDPOINT != null){
 			config.setEndpoint(ENDPOINT);
 		}
@@ -99,7 +99,7 @@ public class YubiOnFssSdkTestConfig {
 
 	static FssSdkConfig createAccesskeyConfig(boolean correctKey) {
 		String secretKey = correctKey ? ACCESSKEY_SECRET_KEY_OK : ACCESSKEY_SECRET_KEY_NG;
-		FssSdkConfig config = new FssSdkConfig(RP_ID, ACCESSKEY_AUTH_ID, FssApiAuthType.AccessKeyAuth, secretKey);
+		FssSdkConfig config = new FssSdkConfig(RP_ID, ACCESSKEY_AUTH_ID, FssApiAuthType.ACCESS_KEY_AUTH, secretKey);
 		if(ENDPOINT != null){
 			config.setEndpoint(ENDPOINT);
 		}

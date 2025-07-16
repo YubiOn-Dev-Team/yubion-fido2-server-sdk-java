@@ -12,11 +12,11 @@ public class FssApiRequesterFactory {
 	}
 	public static FssApiRequester create(FssSdkConfig config, boolean denyUnknownResponseMember, boolean allowBadSslForDebug) {
 		switch (config.getApiAuthType()) {
-			case NonceSignAuth:
+			case NONCE_SIGN_AUTH:
 				return new NonceSignAuthApiRequester(config, denyUnknownResponseMember, allowBadSslForDebug);
-			case DatetimeSignAuth:
+			case DATETIME_SIGN_AUTH:
 				return new DatetimeSignAuthApiRequester(config, denyUnknownResponseMember, allowBadSslForDebug);
-			case AccessKeyAuth:
+			case ACCESS_KEY_AUTH:
 				return new AccessKeyAuthApiRequester(config, denyUnknownResponseMember, allowBadSslForDebug);
 			default:
 				// This should not happen if FssApiAuthType is an enum

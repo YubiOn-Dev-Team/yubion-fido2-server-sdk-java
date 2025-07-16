@@ -1,90 +1,23 @@
 # yubion-fido2-server-sdk-java
 
+[English](README.md) | [Japanese](README.ja.md)
+
 ## yubion-fido2-server-sdk-javaとは
 yubion-fido2-server-sdk-java は、YubiOn FIDO2Server Service（以下、YubiOn FSS）をJavaから利用するためのSDKライブラリです。Javaを用いたサーバーアプリケーションからFIDO2認証（Passkey）を簡単に利用するためのAPIを提供します。
 
 ## 使い方
 利用前に、既にYubiOn FSSにカスタマー登録を行い、RP設定などが完了している必要があります。詳しくはYubiOn FIDO2Server Serviceのマニュアルをご覧ください。  
   
-ご利用になるJavaプロジェクトに、YubiOn FSS SDKをインストールします。
+ご利用になるJavaプロジェクトに、YubiOn FSS SDKをインストールします。  
+現在、mavenなどのパッケージ管理への登録は行われておりません。お手数ですが、プロジェクトをcloneした後、以下のコマンドでjarファイルを生成し、使用するJavaプロジェクトで参照してください。jarファイルはbuild/libsディレクトリ内に生成されます。
 ```
-// TODO: インストール方法の変更   npm install yubion-fido2-server-sdk-js
+gradlew jar -x test
 ```
-FIDO2認証器の登録・認証処理を行うためのサーバー側APIを準備します。
-```
-// TODO: コードの変更
-const sdk = new YubiOnFssSdk({
-	rpId : "test.example.com",
-	apiAuthId : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-	apiAuthType : "NonceSignAuth",
-	secretKey : "MI...",
-});
+プロジェクトの都合などでmavenなどのパッケージ管理への登録が必要な方がおられましたら、お手数ですがお問い合わせください。  
+  
+FIDO2認証のみでなく、登録されているユーザーやクレデンシャルの管理などのAPIも準備されています。詳しくは[APIリファレンス](api-reference.ja.md)をご参照ください。
 
-app.post("/startRegistration", async (req, res) => {
-	const result = await fssSdk.startRegisterCredential({
-		creationOptionsBase:{
-			attestation:"direct",
-			authenticatorSelection:{
-				residentKey : "required",
-				userVerification : "required",
-			},
-		},
-		user : {
-			userId : req.body.userId,
-			userName : req.body.userName,
-			displayName : req.body.displayName,
-			disabled : false,
-		},
-		options : {
-			createUserIfNotExists : true,
-			updateUserIfExists : true,
-			credentialAttributes : {},
-		},
-	});
-	req.session.fssSessionData = result.session;
-	res.json({
-		creationOptions : result.creationOptions,
-	});
-});
-app.post("/finishRegistration", async (req, res) => {
-	const sessionData = req.session.fssSessionData;
-	const verifyResult = await fssSdk.verifyRegisterCredential(req.body, sessionData);
-	if(!verifyResult.credential.userPresence || !verifyResult.credential.userVerification){
-		throw new Error("require up and uv.");
-	}
-	const finishResult = await fssSdk.finishRegisterCredential(req.body, sessionData);
-	res.json({
-		user : finishResult.user,
-		credential : finishResult.credential,
-	});
-});
-app.post("/startAuthentication", async (req, res) => {
-	const userId = req.body.userId;
-	const startResponse = await fssSdk.startAuthenticate({
-		requestOptionsBase : {
-			userVerification : "required",
-		},
-		userId,
-	});
-	req.session.fssSessionData = startResponse.session;
-	res.json({
-		requestOptions : startResponse.requestOptions,
-	});
-});
-app.post("/finishAuthentication", async (req, res) => {
-	const sessionData = req.session.fssSessionData;
-	const finishResponse = await fssSdk.finishAuthenticate({
-		requestResponse : req.body,
-	}, sessionData);
-	req.session.userId = finishResponse.user.userId;
-	res.json({
-		userId : finishResponse.user.userId,
-	});
-});
-```
-FIDO2認証のみでなく、登録されているユーザーやクレデンシャルの管理などのAPIも準備されています。詳しくはAPIマニュアルをご参照ください。
-
-## テストケース実行
+## テストケース実行 (SDK開発者向け)
 テストケースを実行するには、/src/test/resources/environment.propertiesに以下の環境プロパティを設定しておく必要があります。  
 |環境プロパティ名|内容|
 |---------------|---|
