@@ -7,7 +7,7 @@ import java.util.Objects;
  */
 public class FssSdkConfig {
 
-	private static final String DEFAULT_ENDPOINT = "https://fss.yubion.com/api/";
+	private static final String DEFAULT_ENDPOINT = "https://fss-app.yubion.com/api/";
 	private static final String DEFAULT_AGENT = "yubion-fido2-server-sdk-java";
 
 	private final String rpId;
