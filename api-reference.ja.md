@@ -16,7 +16,7 @@ FIDO2サーバーとの通信を行うためのメインクラスです。
 **引数:**
 
 *   `config` (`FssSdkConfig`): FIDO2サーバーへの接続設定。
-    *   `endpoint` (`String`, 省略可能, デフォルト: `"https://fss.yubion.com/api/"`): APIのエンドポイントURL。
+    *   `endpoint` (`String`, 省略可能, デフォルト: `"https://fss-app.yubion.com/api/"`): APIのエンドポイントURL。
     *   `rpId` (`String`): このSDKを使用するRP（リライングパーティ）のID。
     *   `apiAuthId` (`String`): API認証に使用するID。
     *   `apiAuthType` (`FssApiAuthType`): API認証のタイプ。

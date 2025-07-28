@@ -16,7 +16,7 @@ Initializes a new instance of the `YubiOnFssSdk`.
 **Arguments:**
 
 *   `config` (`FssSdkConfig`): Connection settings for the FIDO2 server.
-    *   `endpoint` (`String`, Optional, Default: `"https://fss.yubion.com/api/"`): The API endpoint URL.
+    *   `endpoint` (`String`, Optional, Default: `"https://fss-app.yubion.com/api/"`): The API endpoint URL.
     *   `rpId` (`String`): The ID of the RP (Relying Party) using this SDK.
     *   `apiAuthId` (`String`): The ID used for API authentication.
     *   `apiAuthType` (`FssApiAuthType`): The type of API authentication.
