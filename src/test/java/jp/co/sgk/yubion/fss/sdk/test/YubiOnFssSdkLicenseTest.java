@@ -60,7 +60,9 @@ public class YubiOnFssSdkLicenseTest {
 				YubiOnFssSdkTestConfig.API_AUTH_ID_FOR_LICENSE_TEST,
 				FssApiAuthType.NONCE_SIGN_AUTH,
 				YubiOnFssSdkTestConfig.API_SECRET_KEY_FOR_LICENSE_TEST);
-		config.setEndpoint(YubiOnFssSdkTestConfig.ENDPOINT);
+		if(YubiOnFssSdkTestConfig.ENDPOINT != null){
+			config.setEndpoint(YubiOnFssSdkTestConfig.ENDPOINT);
+		}
 		return new YubiOnFssSdk(config, DENY_UNKNOWN_RESPONSE_MEMBER, ALLOW_BAD_SSL);
 	}
 
